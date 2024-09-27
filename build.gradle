@@ -39,7 +39,7 @@ cucumber {
 }
 
 cucumberReports {
-	runWithJenkins = false
+	runWithJenkins = true
 	outputDir = file("$projectDir/build/generated-reports")
 	buildId = System.getenv('BUILD_NUMBER').toString()
 	reports = files("$projectDir/build/cucumber.json")
