@@ -1,10 +1,10 @@
-package com.android.automation.training;
+package com.android.automation.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TrainingApplicationTests {
+class AndroidApplicationTests {
 
 	@Test
 	void contextLoads() {

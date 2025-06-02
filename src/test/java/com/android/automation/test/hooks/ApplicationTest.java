@@ -1,4 +1,4 @@
-package com.android.automation.training.hooks;
+package com.android.automation.test.hooks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

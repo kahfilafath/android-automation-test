@@ -1,33 +1,23 @@
-package com.android.automation.training.steps;
+package com.android.automation.test.steps;
 
-import com.android.automation.training.base.PageBaseObject;
+import com.android.automation.test.base.PageBaseObject;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidElement;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.messages.types.Product;
-import io.cucumber.plugin.event.Result;
 
 import static org.mockito.ArgumentMatchers.matches;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.lang.model.element.Element;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebElement;
-import org.openqa.selenium.support.FindAll;
-import org.xml.sax.Locator;
 
 public class SearchSteps extends PageBaseObject {
 

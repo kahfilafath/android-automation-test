@@ -1,13 +1,12 @@
-package com.android.automation.training.steps;
+package com.android.automation.test.steps;
 
 
-import com.android.automation.training.base.PageBaseObject;
+import com.android.automation.test.base.PageBaseObject;
 import io.appium.java_client.MobileBy;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
 public class LoginSteps extends PageBaseObject{

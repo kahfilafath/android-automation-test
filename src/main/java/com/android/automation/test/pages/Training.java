@@ -1,6 +1,6 @@
-package com.android.automation.training.pages;
+package com.android.automation.test.pages;
 
-import com.android.automation.training.base.PageBaseObject;
+import com.android.automation.test.base.PageBaseObject;
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 

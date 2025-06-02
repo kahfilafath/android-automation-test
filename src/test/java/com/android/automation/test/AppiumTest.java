@@ -1,19 +1,6 @@
-package com.android.automation.training;
+package com.android.automation.test;
 
-import com.android.automation.training.base.PageBaseObject;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
-import io.appium.java_client.remote.MobileCapabilityType;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import com.android.automation.test.base.PageBaseObject;
 
 public class AppiumTest extends PageBaseObject {
 /*

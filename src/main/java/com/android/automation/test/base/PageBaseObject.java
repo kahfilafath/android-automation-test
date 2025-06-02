@@ -1,11 +1,10 @@
-package com.android.automation.training.base;
+package com.android.automation.test.base;
 
-import com.android.automation.training.drivers.AndroidDriverInit;
+import com.android.automation.test.drivers.AndroidDriverInit;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import java.util.List;
 
-import io.cucumber.plugin.event.Result;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;

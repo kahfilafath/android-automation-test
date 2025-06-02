@@ -1,4 +1,4 @@
-package com.android.automation.training;
+package com.android.automation.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
