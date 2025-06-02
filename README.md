@@ -1,14 +1,15 @@
 # Android Automation Test with Appium
 
-Technology and Tool Used
-Selenium 
-Appium
-Cucumber
-Java
-Gradle
-JUnit
-How to run
+**Technology and Tools Used
 
-Clone This project
-Run this following command in your terminal:
-gradle clean test
+Selenium,
+Appium,
+Cucumber,
+Java,
+Gradle,
+JUnit,
+
+**How to run
+
+1. Clone this project
+2. Run the following command in your terminal: gradle clean test
