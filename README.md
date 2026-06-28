@@ -28,5 +28,7 @@ Note: You can use Appium Inspector to inspect elements on your Android app for l
 ✅ Run Test 
 
 Open Terminal > input command " ./gradlew test -Dcucumber.filter.tags='@TCID'"
-OR just input scenario tag in cucumberRunner.java OR click play button on .feature file
+OR just input scenario tag in cucumberRunner.java 
+OR click play button on .feature file
+
 
