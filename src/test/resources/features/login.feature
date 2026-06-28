@@ -3,10 +3,9 @@ Feature: Login
 
   @TC001
   Scenario: Verify user able to login into alfagift with valid phone number & password
-    Given user click Enter on Welcome screen
-    When user input phone number "0812858882277" on Login screen
-    And user input password "12345678" on Login screen
-    And user click next button on Login screen
+    Given user input phone number "0812858882277" on Login screen
+    And user input password "TestPassword123" on Login screen
+    When user click next button on Login screen
     Then user click Nanti on User Guide
 
 
