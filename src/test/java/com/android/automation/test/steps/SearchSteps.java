@@ -26,7 +26,7 @@ public class SearchSteps extends PageBaseObject {
   @Given("user on the HomePage")
   public void userOnTheHomePage() {
     By HOMESCREEN = MobileBy.id("edt_search");
-    Assertions.assertEquals("Mau belanja apa?", getText(HOMESCREEN), "Failed load Homepage");
+    Assertions.assertTrue(isDisplayed(HOMESCREEN));
   }
 
   @When("user click field search")

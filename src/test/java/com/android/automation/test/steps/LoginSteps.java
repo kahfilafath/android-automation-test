@@ -17,20 +17,22 @@ public class LoginSteps extends PageBaseObject{
 
     @And("user click next button on Login screen")
     public void userClickNextButtonOnLoginScreen() {
-        By BUTTON_CONTINUE = MobileBy.id("btnNext");
+        By BUTTON_CONTINUE = MobileBy.xpath("//android.widget.TextView[@text='Masuk']/following-sibling::android.widget.Button");
         click(BUTTON_CONTINUE);
 
 
     }
     @When("user input phone number {string} on Login screen")
     public void userInputPhoneNumberOnLoginScreen(String phoneNumber) {
-        By INPUT_USERNAME = MobileBy.id("etPhonePontaNumber");
-        input(INPUT_USERNAME, "0812858882277");
+        By INPUT_USERNAME = MobileBy.xpath("//android.widget.EditText");
+        click(INPUT_USERNAME);
+        input(INPUT_USERNAME, phoneNumber);
+        click(MobileBy.xpath("//android.widget.TextView[@text='Masuk/Daftar']/following-sibling::android.widget.Button"));
     }
 
     @And("user input password {string} on Login screen")
     public void userInputPasswordOnLoginScreen(String password) {
-        By INPUT_PASSWORD = MobileBy.id("etPassword");
+        By INPUT_PASSWORD = MobileBy.xpath("//android.widget.EditText");
         input(INPUT_PASSWORD, password);
     }
     @And("user click Enter on Welcome screen")
