@@ -7,5 +7,3 @@ Feature: Login
     And user input password "TestPassword123" on Login screen
     When user click next button on Login screen
     Then user click Nanti on User Guide
-
-

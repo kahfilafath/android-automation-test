@@ -33,6 +33,7 @@ public class LoginSteps extends PageBaseObject{
     @And("user input password {string} on Login screen")
     public void userInputPasswordOnLoginScreen(String password) {
         By INPUT_PASSWORD = MobileBy.xpath("//android.widget.EditText");
+        waitUntilPresent(INPUT_PASSWORD);
         input(INPUT_PASSWORD, password);
     }
     @And("user click Enter on Welcome screen")

@@ -38,7 +38,7 @@ dependencies {
 
 cucumber {
 	main = 'io.cucumber.core.cli.Main'
-	glue = 'classpath:com.android.automation.training'
+	glue = 'classpath:com.android.automation.test'
 	plugin = ['pretty', "json:build/cucumber.json", "html:build/result", "junit:target/cucumber-reports/cucumber.xml"]
 }
 
@@ -54,5 +54,4 @@ cucumberReports {
 test {
 	systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 	systemProperty "cucumber.options", System.getProperty("cucumber.options")
-	useJUnitPlatform()
 }
