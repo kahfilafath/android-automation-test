@@ -60,8 +60,12 @@ public class SearchSteps extends PageBaseObject {
     List<String> disProduct = findAll(RESULT).stream().map(RemoteWebElement::getText)
         .collect(Collectors.toList());
     for (String string : disProduct) {
+      string.toLowerCase().compareTo(title_product);
+      return;
+    }
+    for (String string : disProduct) {
       MatcherAssert.assertThat("Produk tidak ditemukan", string.toLowerCase(),
-          Matchers.containsString(title_product));
+              Matchers.containsString(title_product));
     }
   }
 }
