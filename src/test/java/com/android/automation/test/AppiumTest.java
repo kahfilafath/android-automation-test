@@ -50,29 +50,29 @@ public class AppiumTest extends PageBaseObject {
     }
 
 
-  //Sample test
-//  @Test
-//  public void loginWithValidData() {
-//    //call driver method to create session (mandatory step to run automation)
-//    androidDriverInit();
-//    //input username
-//    By INPUT_USERNAME = MobileBy.xpath("//android.widget.EditText");
-//    By BUTTON_NEXT = MobileBy.xpath("//android.widget.TextView[@text='Masuk/Daftar']/following-sibling::android.widget.Button");
-//    driver.findElement(INPUT_USERNAME).sendKeys("0812858882277");
-//    driver.findElement(BUTTON_NEXT).click();
-//
-//  }
+////  Sample test
+  @Test
+  public void loginWithValidData() {
+    //call driver method to create session (mandatory step to run automation)
+    androidDriverInit();
+    //input username
+    By INPUT_USERNAME = MobileBy.xpath("//android.widget.EditText");
+    By BUTTON_NEXT = MobileBy.xpath("//android.widget.TextView[@text='Masuk/Daftar']/following-sibling::android.widget.Button");
+    driver.findElement(INPUT_USERNAME).sendKeys("0812858882277");
+    driver.findElement(BUTTON_NEXT).click();
 
-// @Test
-//    public void verifyAlfamartIcon(){
-//        androidDriverInit();
-//        WebDriverWait wait = new WebDriverWait(driver, 15);
-//        By icon_alfamart = MobileBy.xpath("//android.widget.TextView[@text='Promo']/preceding::android.widget.ImageView");
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(icon_alfamart));
-//        driver.findElement(icon_alfamart).isDisplayed();
-//        Assert.assertTrue("Icon Alfamart is not displayed", driver.findElement(icon_alfamart).isDisplayed());
-//        System.out.println("Hidup Jokowi");
-// }
+  }
+
+ @Test
+    public void verifyAlfamartIcon(){
+        androidDriverInit();
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        By icon_alfamart = MobileBy.xpath("//android.widget.TextView[@text='Promo']/preceding::android.widget.ImageView");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(icon_alfamart));
+        driver.findElement(icon_alfamart).isDisplayed();
+        Assert.assertTrue("Icon Alfamart is not displayed", driver.findElement(icon_alfamart).isDisplayed());
+        System.out.println("Hidup Jokowi");
+ }
 
 @Test
     public void verifyToko(){

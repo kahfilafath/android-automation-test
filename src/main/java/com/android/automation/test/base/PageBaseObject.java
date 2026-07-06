@@ -4,10 +4,11 @@ import com.android.automation.test.drivers.AndroidDriverInit;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import java.util.List;
-
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class PageBaseObject extends AndroidDriverInit {
 
@@ -41,12 +42,16 @@ public class PageBaseObject extends AndroidDriverInit {
     WebDriverWait wait = new WebDriverWait(driver, 15);
     wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
   }
+
   public void waitUntilTextPresent(By locator, String text) {
     WebDriverWait wait = new WebDriverWait(driver, 15);
     wait.until(ExpectedConditions.textToBePresentInElement(find(locator), text));
   }
-  public Boolean isDisplayed(By locator){
-    return find(locator).isDisplayed();
+  public Boolean isDisplayed(By locator) {
+    try {
+      return find(locator).isDisplayed();
+    } catch (NoSuchElementException e) {
+      return false;
+    }
   }
-
 }

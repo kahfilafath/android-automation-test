@@ -48,8 +48,6 @@ public class LoginSteps extends PageBaseObject{
         click(BUTTON_LATER);
     }
 
-
-
 }
 
 
