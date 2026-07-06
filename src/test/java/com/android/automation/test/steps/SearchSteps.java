@@ -26,6 +26,7 @@ public class SearchSteps extends PageBaseObject {
   @Given("user on the HomePage")
   public void userOnTheHomePage() {
     By HOMESCREEN = MobileBy.id("edt_search");
+    waitUntilPresent(HOMESCREEN);
     Assertions.assertTrue(isDisplayed(HOMESCREEN));
   }
 

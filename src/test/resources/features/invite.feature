@@ -1,5 +1,5 @@
 Feature: Invite Friends & Get Rewards
-  As a customer I want to be able to enjoy benefits of sharing referral link to friends
+  As a customer I want to be able to enjoy benefits of sharing referral code to friends
 
   Background:
     Given user input phone number "" on Login screen
@@ -15,7 +15,7 @@ Feature: Invite Friends & Get Rewards
   Scenario: Verify user able to copy referral code
     Given user on the Ajak Teman page
     When user copy the referral code
-    Then user should have "RYAN0990" copied on the clipboard
+    Then user should have referral code copied on the clipboard
 
   @TC004
   Scenario: Verify user able to share code
