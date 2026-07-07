@@ -114,15 +114,9 @@ public class AppiumTest extends PageBaseObject {
         By CHECKBOX_PILIH_TOKO = MobileBy.xpath("//android.widget.CheckBox | //*[contains(@text, 'Pilih Toko') or contains(@text, 'Konfirmasi')]");
 
 
-        // =========================================================================
-        // BLOCK: @Given("user opens Alfagift Beta application") -> LoginSteps
-        // =========================================================================
         System.out.println("Memulai inisialisasi pengujian FCR Login.");
 
 
-        // =========================================================================
-        // BLOCK: @When("user inputs phone number {string}") -> LoginSteps
-        // =========================================================================
         try {
             waitLogin.until(ExpectedConditions.presenceOfElementLocated(FIELD_INPUT_PHONE_SECURE));
             AndroidElement phoneField = (AndroidElement) driver.findElement(FIELD_INPUT_PHONE_SECURE);
@@ -152,10 +146,6 @@ public class AppiumTest extends PageBaseObject {
             e.printStackTrace();
         }
 
-
-        // =========================================================================
-        // BLOCK: @When("user inputs valid password {string}") -> LoginSteps
-        // =========================================================================
         try {
             waitLogin.until(ExpectedConditions.presenceOfElementLocated(FIELD_INPUT_PASSWORD_SECURE));
             AndroidElement passwordField = (AndroidElement) driver.findElement(FIELD_INPUT_PASSWORD_SECURE);
@@ -169,7 +159,6 @@ public class AppiumTest extends PageBaseObject {
             System.out.println("Password tersuntik ke dalam field.");
             Thread.sleep(1000);
 
-            // FIX 1:1 DISINI - Menghapus hideKeyboard() di halaman password agar behavior-nya seragam.
             waitLogin.until(ExpectedConditions.presenceOfElementLocated(TEXT_MASUK_ELEMENT));
             WebElement masukTextBtnFinal = driver.findElement(TEXT_MASUK_ELEMENT);
 
@@ -183,10 +172,6 @@ public class AppiumTest extends PageBaseObject {
             e.printStackTrace();
         }
 
-
-        // =========================================================================
-        // BLOCK: @Then("user should be successfully redirected to homepage") -> LoginSteps
-        // =========================================================================
         System.out.println("Mendeteksi transisi menuju beranda...");
 
         try {
@@ -204,9 +189,6 @@ public class AppiumTest extends PageBaseObject {
         System.out.println("Sukses Besar! Beranda terdeteksi dan siap digunakan.");
 
 
-        // =========================================================================
-        // BLOCK: @Given("user is on homepage after login") -> SearchSteps
-        // =========================================================================
         System.out.println("Memvalidasi kesiapan halaman beranda pasca login...");
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 
@@ -222,9 +204,6 @@ public class AppiumTest extends PageBaseObject {
         System.out.println("Berhasil memvalidasi elemen search icon di beranda aktif.");
 
 
-        // =========================================================================
-        // BLOCK: @When("user types keyword {string} in search bar") -> SearchSteps
-        // =========================================================================
         try {
             System.out.println("Menunggu elemen ikon pencarian murni siap...");
             AndroidElement searchIcon = (AndroidElement) waitSearch.until(
@@ -239,7 +218,6 @@ public class AppiumTest extends PageBaseObject {
                     ExpectedConditions.visibilityOfElementLocated(SEARCH_TYPING_FIELD)
             );
 
-            // 1:1 Sesuai Cucumber - click field baru sendKeys
             typingField.click();
             typingField.sendKeys("Aqua");
 
@@ -257,22 +235,11 @@ public class AppiumTest extends PageBaseObject {
         }
 
 
-        // =========================================================================
-        // BLOCK: @Then("application displays matching product list") -> SearchSteps
-        // =========================================================================
         waitSearch.until(ExpectedConditions.presenceOfElementLocated(PRODUCT_AQUA_CARD));
         System.out.println("Daftar produk hasil pencarian berhasil dimuat.");
 
-
-        // =========================================================================
-        // BLOCK: @Given("user sees the product from search result") -> SearchSteps
-        // =========================================================================
         waitSearch.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_AQUA_CARD));
 
-
-        // =========================================================================
-        // BLOCK: @When("user clicks add to basket button on the product") -> SearchSteps
-        // =========================================================================
         try {
             System.out.println("Menunggu tombol tambah ke keranjang (ATC) siap...");
             AndroidElement btnAdd = (AndroidElement) waitSearch.until(
@@ -288,10 +255,6 @@ public class AppiumTest extends PageBaseObject {
             e.printStackTrace();
         }
 
-
-        // =========================================================================
-        // BLOCK: @Then("basket status is updated with the product") -> SearchSteps
-        // =========================================================================
         try {
             System.out.println("Memberikan waktu jeda asinkronus (1.5 detik) agar status basket diperbarui di backend...");
             Thread.sleep(1500);
@@ -302,9 +265,6 @@ public class AppiumTest extends PageBaseObject {
         System.out.println("Status keranjang divalidasi telah siap.");
 
 
-        // =========================================================================
-        // BLOCK: @Given("user goes to Basket page") -> SearchSteps
-        // =========================================================================
         try {
             System.out.println("Mencoba berpindah ke halaman keranjang via ICON_BASKET...");
             AndroidElement basketIcon = (AndroidElement) waitSearch.until(
@@ -320,18 +280,10 @@ public class AppiumTest extends PageBaseObject {
             driver.findElement(ICON_BASKET).click();
         }
 
-
-        // =========================================================================
-        // BLOCK: @Then("application renders product and displays checkout button") -> SearchSteps
-        // =========================================================================
         System.out.println("Menunggu halaman keranjang memuat komponen checkout...");
         waitSearch.until(ExpectedConditions.visibilityOfElementLocated(TEXT_CHECKOUT_SELANJUTNYA));
         System.out.println("Halaman keranjang stabil. Tombol Selanjutnya siap dieksekusi.");
 
-
-        // =========================================================================
-        // BLOCK: @Given("user is on Order Summary page") -> SearchSteps
-        // =========================================================================
         try {
             System.out.println("[KLIK 1] Mencoba klik Checkout Pertama ('Selanjutnya') di halaman Cart...");
             AndroidElement checkoutBtn = (AndroidElement) waitSearch.until(
@@ -368,10 +320,6 @@ public class AppiumTest extends PageBaseObject {
             e.printStackTrace();
         }
 
-
-        // =========================================================================
-        // BLOCK: @When("user clicks Change button on store pickup option") -> SearchSteps
-        // =========================================================================
         try {
             System.out.println("Memasuki halaman Order Summary. Memeriksa keberadaan panduan pengguna (User Guide/Coachmark)...");
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -409,10 +357,6 @@ public class AppiumTest extends PageBaseObject {
             e.printStackTrace();
         }
 
-
-        // =========================================================================
-        // BLOCK: @Then("user is redirected to store location selection page") -> SearchSteps
-        // =========================================================================
         try {
             waitSearch.until(ExpectedConditions.visibilityOfElementLocated(CHECKBOX_PILIH_TOKO)).click();
             System.out.println("Seluruh siklus FCR Sukses Dieksekusi 100%!");
