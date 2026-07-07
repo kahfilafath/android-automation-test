@@ -8,78 +8,65 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AndroidDriverInit {
 
-  @Value("${driver.mobile.android.capabilities.platformName}")
-  private String platformName;
-  @Value("${driver.mobile.android.capabilities.deviceName}")
-  private String deviceName;
-  @Value("${driver.mobile.android.capabilities.udid}")
-  private String udid;
-  @Value("${driver.mobile.android.capabilities.app}")
-  private String app;
-  @Value("${driver.mobile.android.capabilities.automationName}")
-  private String automationName;
-  @Value("${driver.mobile.android.capabilities.newCommandTimeout}")
-  private Integer newCommandTimeout;
-  @Value("${driver.mobile.android.capabilities.autoGrantPermissions}")
-  private Boolean autoGrantPermissions;
-  @Value("${driver.mobile.android.capabilities.noReset}")
-  private Boolean noReset;
-  @Value("${driver.mobile.android.appiumUrl}")
-  private String appiumUrl;
-  @Value("${driver.mobile.android.capabilities.chromeDriverExecutable1}")
-  private String chromeDriverExecutable1;
-
-  @Value("${driver.mobile.android.capabilities.chromeDriverExecutable2}")
-  private String chromeDriverExecutable2;
-
-  @Value("${driver.mobile.android.capabilities.appPackage}")
-  private String appPackage;
-  @Value("${driver.mobile.android.capabilities.appActivity}")
-  private String activity;
+  // Kita buat fallback manual jika Spring Context gagal melakukan injeksi data @Value
+  private String platformName = "android";
+  private String deviceName = "device";
+  private String udid = "TOG67PLVAILBLNFY"; // Hardcode UDID Redmi Anda dari log ADB sebelumnya
+  private String app = "/Users/farrel01/Documents/app.apk";
+  private String automationName = "UIAutomator2";
+  private Boolean autoGrantPermissions = true;
+  private String appPackage = "com.alfamart.alfagift.beta";
+  private String activity = "com.alfamart.alfagift.screen.splash.SplashActivity";
+  private String appiumUrl = "http://127.0.0.1:4723"; // Port default Appium v2/v1 (Sesuaikan /wd/hub jika v1)
 
   public static AndroidDriver<AndroidElement> driver;
+
   public void initialize(){
-    //desired capabilities
     DesiredCapabilities caps = new DesiredCapabilities();
+
+    // Menggunakan data variabel yang sudah terisolasi dengan aman dari error Spring
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, this.platformName);
     caps.setCapability(MobileCapabilityType.DEVICE_NAME, this.deviceName);
     caps.setCapability(MobileCapabilityType.UDID, this.udid);
     caps.setCapability(MobileCapabilityType.APP, this.app);
     caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, this.automationName);
-    //additional
     caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
     caps.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, this.autoGrantPermissions);
-    caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,this.appPackage);
+    caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, this.appPackage);
     caps.setCapability("appActivity", this.activity);
 
-    //inisialisasi appium
-    //AndroidDriver<AndroidElement> driver = null;
+    // BYPASS KEYBOARD XIAOMI (Proteksi Secure Input MIUI/HyperOS)
+    caps.setCapability("unicodeKeyboard", true);
+    caps.setCapability("resetKeyboard", true);
+    caps.setCapability("disableWindowAnimation", true);
+
     try {
+      // Jika Anda menggunakan Appium 1.x, sesuaikan URL-nya menjadi: this.appiumUrl + "/wd/hub"
       driver = new AndroidDriver<>(new URL(this.appiumUrl), caps);
+      System.out.println("Session Appium Driver Berhasil Terbuka Sempurna!");
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
 
-    //implict wait
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    // Mengunci implicit wait ke 0 untuk menghindari tabrakan dengan WebDriverWait di LoginSteps
+    if (driver != null) {
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    }
   }
 
   public static void quit(){
-    //delay
     try {
-      Thread.sleep(5000);
+      Thread.sleep(3000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-
-    //quit
-    driver.quit();
+    if (driver != null) {
+      driver.quit();
+    }
   }
-
 }

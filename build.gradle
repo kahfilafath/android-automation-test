@@ -14,6 +14,7 @@ java {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
+
 repositories {
 	mavenCentral()
 }
@@ -22,7 +23,7 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter"
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 	testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation group: 'io.appium', name: 'java-client', version: '7.6.0'
 	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 	implementation group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '3.141.59'
@@ -39,19 +40,27 @@ dependencies {
 cucumber {
 	main = 'io.cucumber.core.cli.Main'
 	glue = 'classpath:com.android.automation.test'
-	plugin = ['pretty', "json:build/cucumber.json", "html:build/result", "junit:target/cucumber-reports/cucumber.xml"]
+	plugin = ['pretty', "json:${buildDir}/cucumber.json", "html:${buildDir}/result"]
 }
 
 cucumberReports {
 	runWithJenkins = false
-	outputDir = file("$projectDir/build/generated-reports")
-	buildId = System.getenv('BUILD_NUMBER').toString()
-	reports = files("$projectDir/build/cucumber.json")
-	trends = file("$projectDir/src/test/resources/trends/trends.json")
-	trendsLimit = 10
+	outputDir = file("${buildDir}/generated-reports")
+
+	buildId = System.getenv('BUILD_NUMBER') != null ? System.getenv('BUILD_NUMBER').toString() : '1'
+
+	reports = files("${buildDir}/cucumber.json")
+
+	// trends = file("$projectDir/src/test/resources/trends/trends.json")
 }
 
 test {
+	finalizedBy generateCucumberReports
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+
 	systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 	systemProperty "cucumber.options", System.getProperty("cucumber.options")
 }
