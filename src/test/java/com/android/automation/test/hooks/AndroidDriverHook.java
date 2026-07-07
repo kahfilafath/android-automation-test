@@ -1,16 +1,25 @@
 package com.android.automation.test.hooks;
 
-import com.android.automation.test.drivers.AndroidDriverInit;
+import com.android.automation.test.AppiumTest;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class AndroidDriverHook {
 
-  @Autowired
-  AndroidDriverInit androidDriverInit;
+  public static AndroidDriver<AndroidElement> driver;
+
   @Before
-  public void init(){
-    androidDriverInit.initialize();
+  public void startSession() {
+    AppiumTest appiumTest = new AppiumTest();
+    driver = appiumTest.androidDriverInit();
   }
 
+  @After
+  public void stopSession() {
+    if (driver != null) {
+      driver.quit();
+    }
+  }
 }
