@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
       plugin = {"json:build/cucumber.json", "pretty", "html:build/result.html"},
       features = "src/test/resources/features",
       stepNotifications = true,
-      tags = "@TC001",
+      tags = "",
       publish = true
   )
   public class CucumberRunner extends AbstractTestNGCucumberTests {

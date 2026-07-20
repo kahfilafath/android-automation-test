@@ -30,13 +30,14 @@ Feature: Invite Friends & Get Rewards
     Then user should see the Cara Ajak Teman bottom sheet
 
   @TC006
-  Scenario: Verify user able to view Teman yang kamu aja Info
+  Scenario: Verify user able to view Teman yang kamu ajak Info
     Given user on the Ajak Teman page
     When user click the Teman yang kamu ajak info button
-    Then user should see the Invitee info bottom sheet
+    Then user should see "Yang menggunakan kode referral kamu pada saat registrasi akan muncul di sini beserta jenis reward yang berlaku" on the bottom sheet
 
   @TC007
   Scenario: Verify user able to see detail of referral
     Given user on the Ajak Teman page
     When user click the referral benefit detail button
-    Then user should see the Syarat dan Ketentuan page
+    Then user should see "Syarat Ketentuan" page
+

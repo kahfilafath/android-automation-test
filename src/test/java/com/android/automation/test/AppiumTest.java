@@ -28,8 +28,8 @@ public class AppiumTest extends PageBaseObject {
     DesiredCapabilities caps = new DesiredCapabilities();
     caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
     caps.setCapability(MobileCapabilityType.DEVICE_NAME, "device");
-    caps.setCapability(MobileCapabilityType.UDID, "S3AIGF000036FJE");
-    caps.setCapability(MobileCapabilityType.APP, "/Users/ryanradithyaputra/Downloads/agfbeta.apk");
+    caps.setCapability(MobileCapabilityType.UDID, "RR8N105E8XJ");
+    caps.setCapability(MobileCapabilityType.APP, "D://app/app-training.apk");
     caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
     caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
     caps.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);

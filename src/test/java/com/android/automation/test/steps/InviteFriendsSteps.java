@@ -78,28 +78,22 @@ public class InviteFriendsSteps extends PageBaseObject {
     @Then("user should see the Cara Ajak Teman bottom sheet")
     public void userShouldSeeTheCaraAjakTemanBottomSheet()
     {
-        By CARA_AJAK_TEMAN_TEXT = MobileBy.xpath("//android.widget.TextView[@resource-id=\"com.alfamart.alfagift.beta:id/tv_title\" and @text=\"Cara Ajak Teman\"]");
+        By CARA_AJAK_TEMAN_TEXT = MobileBy.xpath("//android.widget.TextView[contains(@resource-id,\"tv_title\") and @text=\"Cara Ajak Teman\"]");
         Assertions.assertEquals("Cara Ajak Teman", driver.findElement(CARA_AJAK_TEMAN_TEXT).getText(), "Bottom sheet not shown!");
     }
 
     @When("user click the Teman yang kamu ajak info button")
     public void userClickTheTemanYangKamuAjakInfoButton()
     {
-//        By INVITEE_INFO_BUTTON = MobileBy.xpath("//android.widget.ImageView[@resource-id=\"com.alfamart.alfagift.beta:id/iv_info_invitee\"]");
         By INVITEE_INFO_BUTTON = MobileBy.id("iv_info_invitee");
         click(INVITEE_INFO_BUTTON);
     }
 
-    @Then("user should see the Invitee info bottom sheet")
-    public void userShouldSeeTheInviteeInfoBottomSheet()
+    @Then("user should see {string} on the bottom sheet")
+    public void userShouldSeeInfoBottomSheet(String descBottomSheet)
     {
-//        By INVITEE_BOTTOM_SHEET_HEADER = MobileBy.xpath("//android.widget.TextView[@resource-id=\"com.alfamart.alfagift.beta:id/tv_title\"]");
-//        By INVITEE_BOTTOM_SHEET_DESC = MobileBy.xpath("//android.widget.TextView[@resource-id=\"com.alfamart.alfagift.beta:id/tv_desc\"]");
-
         By INVITEE_BOTTOM_SHEET_HEADER = MobileBy.id("tv_title");
         By INVITEE_BOTTOM_SHEET_DESC = MobileBy.id("tv_desc");
-
-        String descBottomSheet = "Yang menggunakan kode referral kamu pada saat registrasi akan muncul di sini beserta jenis reward yang berlaku";
 
         Assertions.assertEquals("Info", driver.findElement(INVITEE_BOTTOM_SHEET_HEADER).getText(), "Bottom sheet not shown!");
         Assertions.assertEquals(descBottomSheet, driver.findElement(INVITEE_BOTTOM_SHEET_DESC).getText(), "Bottom sheet not shown!");
@@ -112,11 +106,10 @@ public class InviteFriendsSteps extends PageBaseObject {
         click(REFERRAL_DETAIL_BUTTON);
     }
 
-    @Then("user should see the Syarat dan Ketentuan page")
-    public void userShouldSeeTheSyaratDanKetentuanPage()
+    @Then("user should see {string} page")
+    public void userShouldSeeTheExpectedPageTitle(String pageTitle)
     {
-        By SYARAT_DAN_KETENTUAN_HEADER = MobileBy.id("tv_title");
-        Assertions.assertEquals("Syarat Ketentuan", driver.findElement(SYARAT_DAN_KETENTUAN_HEADER).getText(), "Syarat dan ketentuan not opened!");
+        By PAGE_HEADER_TITLE = MobileBy.id("tv_title");
+        Assertions.assertEquals(pageTitle, driver.findElement(PAGE_HEADER_TITLE).getText(), "Page header title not found!");
     }
-
 }
