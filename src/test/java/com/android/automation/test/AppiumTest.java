@@ -6,7 +6,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -19,6 +18,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AppiumTest extends PageBaseObject {
 
@@ -59,21 +60,33 @@ public class AppiumTest extends PageBaseObject {
     //input username
     By INPUT_USERNAME = MobileBy.xpath("//android.widget.EditText");
     By BUTTON_NEXT = MobileBy.xpath("//android.widget.TextView[@text='Masuk/Daftar']/following-sibling::android.widget.Button");
+    WebDriverWait wait = new WebDriverWait(driver,15);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(INPUT_USERNAME));
+
     driver.findElement(INPUT_USERNAME).sendKeys("0812858882277");
     driver.findElement(BUTTON_NEXT).click();
   }
 
-//  @Test
-//    public void verifyIconAlfamartOnSignInScreen()
-//  {
-//      androidDriverInit();
-//
-//      WebDriverWait wait = new WebDriverWait(driver, 15);
-//      By ICON_ALFAMART = MobileBy.xpath("//android.widget.TextView[@text='Promo']/preceding::android.widget.ImageView");
-//      wait.until(ExpectedConditions.visibilityOfElementLocated(ICON_ALFAMART));
-//      Assertions.assertTrue(driver.findElement(ICON_ALFAMART).isDisplayed(), "Alfamart Icon is not displayed!");
-//
-//  }
+  @Test
+  public void verifyIconAlfamartOnSignInScreen(){
+    androidDriverInit();
+    WebDriverWait wait = new WebDriverWait(driver,15);
+    By ICON_ALFAMART = MobileBy.xpath("//android.widget.TextView[@text='Promo']/preceding::android.widget.ImageView");
+    wait.until(ExpectedConditions.visibilityOfElementLocated(ICON_ALFAMART));
+    Assertions.assertTrue(driver.findElement(ICON_ALFAMART).isDisplayed(),
+        "Alfamart Icon is not displayed");
+  }
+
+  @Test
+  public void verifyUserShouldBeLandedIntoStoreScreen(){
+      androidDriverInit();
+      By BUTTON_STORE = MobileBy.xpath("//android.widget.TextView[@text='Toko']/following-sibling::android.widget.Button");
+      By LABEL_STORE_SCREEN = MobileBy.id("tv_page_title");
+      driver.findElement(BUTTON_STORE).click();
+      String getLabelStore = driver.findElement(LABEL_STORE_SCREEN).getText();
+      Assertions.assertEquals("Toko Terdekat",getLabelStore,"User is not landed on store screen");
+  }
+
 
   @Test
     public void verifyUserShouldBeLandedIntoStoreScreen()
