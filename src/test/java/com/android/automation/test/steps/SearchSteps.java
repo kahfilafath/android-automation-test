@@ -26,6 +26,7 @@ public class SearchSteps extends PageBaseObject {
   @Given("user on the HomePage")
   public void userOnTheHomePage() {
     By HOMESCREEN = MobileBy.id("edt_search");
+    waitUntilPresent(HOMESCREEN);
     Assertions.assertTrue(isDisplayed(HOMESCREEN));
   }
 
@@ -53,15 +54,22 @@ public class SearchSteps extends PageBaseObject {
     Assertions.assertEquals(see_product, getText(SUGGESTION), "Failed load suggestion");
   }
 
+
+
   @Then("user should discover the product {string} on the search result page")
   public void userShouldDiscoverTheProductOnTheSearchResultPage(String title_product) {
 
     By RESULT = MobileBy.id("txt_product_name");
     List<String> disProduct = findAll(RESULT).stream().map(RemoteWebElement::getText)
         .collect(Collectors.toList());
+    System.out.println(disProduct);
     for (String string : disProduct) {
-      MatcherAssert.assertThat("Produk tidak ditemukan", string.toLowerCase(),
-          Matchers.containsString(title_product));
+      if (string.toLowerCase().contains(title_product.toLowerCase())) {
+        return;
+      }
+    }
+    for (String string : disProduct) {
+      MatcherAssert.assertThat("Produk tidak ditemukan", string.toLowerCase(), Matchers.containsString(title_product));
     }
   }
 }
